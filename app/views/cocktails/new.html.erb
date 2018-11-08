@@ -1,0 +1,7 @@
+<h1>Add a Cocktails#new</h1>
+<%= simple_form_for @cocktail do |f| %>
+<%= f.input :name %>
+<%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+
+<p><%= link_to "Go back to cocktails", root_path %></p>
