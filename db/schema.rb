@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_144158) do
+ActiveRecord::Schema.define(version: 2018_11_09_110532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 2018_11_08_144158) do
   end
 
   create_table "doses", force: :cascade do |t|
-    t.text "description"
-    t.bigint "cocktails_id"
-    t.bigint "ingredients_id"
+    t.string "description"
+    t.bigint "cocktail_id"
+    t.bigint "ingredient_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cocktails_id"], name: "index_doses_on_cocktails_id"
-    t.index ["ingredients_id"], name: "index_doses_on_ingredients_id"
+    t.index ["cocktail_id"], name: "index_doses_on_cocktail_id"
+    t.index ["ingredient_id"], name: "index_doses_on_ingredient_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 2018_11_08_144158) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "doses", "cocktails", column: "cocktails_id"
-  add_foreign_key "doses", "ingredients", column: "ingredients_id"
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "cocktail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cocktail_id"], name: "index_reviews_on_cocktail_id"
+  end
+
+  add_foreign_key "doses", "cocktails"
+  add_foreign_key "doses", "ingredients"
+  add_foreign_key "reviews", "cocktails"
 end
