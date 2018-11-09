@@ -24,6 +24,7 @@ gem 'font-awesome-sass', '~> 5.0.9'
 gem 'simple_form'
 
 gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
